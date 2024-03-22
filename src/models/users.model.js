@@ -58,7 +58,7 @@ exports.getUserCode = async (code) => {
 exports.updateUserStatus = async (id) => {
     const query = `
     UPDATE "users"
-    SET "statusUsersId" = 2
+    SET "statusUsersId" = 2, "updatedAt" = now()
     WHERE "id" = $1
     RETURNING *
     `;
