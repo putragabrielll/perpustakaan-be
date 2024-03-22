@@ -26,3 +26,28 @@ exports.getBookById = async (id) => {
     const { rows } = await db.query(query, [id]);
     return rows[0]
 }
+
+
+// =============================================================
+// ORDER
+exports.getBooksCode = async (code) => {
+    const query = `
+    SELECT *
+    FROM "books"
+    WHERE "code" = $1
+    `
+    const {rows} = await db.query(query, [code])
+    return rows[0]
+}
+
+// UPDATE STATUS BOOK AND STOCK BOOK
+exports.updateBookStatus = async (id) => {
+    const query = `
+    UPDATE "books"
+    SET "statusBooksId" = 1, "stock" = 1
+    WHERE "id" = $1
+    RETURNING *
+    `;
+    const { rows } = await db.query(query, [id]);
+    return rows[0]
+}

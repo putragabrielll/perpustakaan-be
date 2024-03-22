@@ -37,3 +37,28 @@ exports.getUserById = async (id) => {
     const { rows } = await db.query(query, [id]);
     return rows[0]
 }
+
+
+// =============================================================
+// ORDER
+exports.getUserCode = async (code) => {
+    const query = `
+    SELECT *
+    FROM "users"
+    WHERE "code" = $1
+    `
+    const { rows } = await db.query(query, [code])
+    return rows[0]
+}
+
+// UPDATE STATUS USER JIKA TGL KEMBALI > 7 HARI
+exports.updateUserStatus = async (id) => {
+    const query = `
+    UPDATE "users"
+    SET "statusUsersId" = 2
+    WHERE "id" = $1
+    RETURNING *
+    `;
+    const { rows } = await db.query(query, [id]);
+    return rows[0]
+}
