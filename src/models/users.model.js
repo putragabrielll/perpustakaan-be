@@ -26,11 +26,14 @@ exports.getUserById = async (id) => {
     "su"."name" AS "statusUser",
     "u"."name",
     "u"."code",
+    array_agg("b"."title") AS "books",
     (SELECT count("id") FROM "pinjam" WHERE "usersId" = $1) AS "totalPinjam",
     "u"."createdAt",
     "u"."updatedAt"
     FROM "users" "u"
     INNER JOIN "statusUsers" "su" ON "u"."statusUsersId" = "su"."id"
+    LEFT JOIN "pinjam" "p" ON "u"."id" = "p"."usersId"
+    LEFT JOIN "books" "b" ON "p"."booksId" = "b"."id"
     WHERE "u"."id" = $1
     GROUP BY "u"."id", "su"."name"
     `;
