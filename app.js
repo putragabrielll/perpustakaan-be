@@ -10,6 +10,12 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
+// Swagger
+const swaggerUi = require("swagger-ui-express")
+const swaggerDocument = require("./apidocs.json")
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+// end Swagger
+
 
 // ================================================
 // Cek apakah link utama berjalan

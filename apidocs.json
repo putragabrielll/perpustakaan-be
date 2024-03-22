@@ -1,0 +1,172 @@
+{
+
+    "openapi": "3.0.0",
+    "servers": {
+        "description": "localhost",
+        "url": "http://localhost:8000"
+    },
+    "info": {
+        "description": "Daftar API Back End Perpustakaan",
+        "version": "1.0.0",
+        "title": "API Perpustakaan",
+        "tags": [
+            {
+                "name": "books",
+                "description": "All API for Books"
+            },
+            {
+                "name": "users",
+                "description": "All API for Users"
+            },
+            {
+                "name": "orders",
+                "description": "All API for Users"
+            }
+        ]
+    },
+    "paths": {
+        "/books": {
+            "get": {
+                "tags":[
+                    "books"
+                ],
+                "summary": "List semua buku yang ready",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/books/{id}": {
+            "get": {
+                "tags":[
+                    "books"
+                ],
+                "summary": "Detail buku",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id buku",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "tags":[
+                    "users"
+                ],
+                "summary": "List semua users yang aktif",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/users/{id}": {
+            "get": {
+                "tags":[
+                    "users"
+                ],
+                "summary": "Detail user",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id user",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/order/pesan": {
+            "post": {
+                "tags":[
+                    "orders"
+                ],
+                "summary": "Pesan Buku",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "codeUsers": {
+                                        "type": "string"
+                                    },
+                                    "codeBooks": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/order/kembali/{userCode}": {
+            "path": {
+                "tags":[
+                    "orders"
+                ],
+                "summary": "Kembali Buku",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "booksCode",
+                        "in": "query",
+                        "description": "code books",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "userCode",
+                        "in": "path",
+                        "description": "code user",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        }
+    }
+}
