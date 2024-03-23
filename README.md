@@ -47,15 +47,6 @@ To run this project, you will need to add the following environment variables to
 
 #### Login
 
-```http
-  POST auth/login
-```
-#### Register
-
-```http
-  POST auth/register
-```
-
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
 | `/books` | `GET` | Get a list of books |
