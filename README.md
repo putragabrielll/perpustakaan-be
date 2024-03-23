@@ -45,8 +45,6 @@ To run this project, you will need to add the following environment variables to
 
 ## API Reference
 
-#### Login
-
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
 | `/books` | `GET` | Get a list of books |
