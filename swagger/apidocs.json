@@ -1,0 +1,483 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "API Perpustakaan",
+        "description": "Daftar API Back End Perpustakaan",
+        "version": "1.0.0"
+    },
+    "tags": [
+        {
+            "name": "books",
+            "description": "All API for Books"
+        },
+        {
+            "name": "users",
+            "description": "All API for Users"
+        },
+        {
+            "name": "orders",
+            "description": "All API for Orders"
+        }
+    ],
+    "paths": {
+        "/books": {
+            "get": {
+                "tags": [
+                    "books"
+                ],
+                "summary": "List all books available on system",
+                "description": "List semua buku yang ready dan siap untuk di pinjam.",
+                "operationId": "listAllBooks",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties":{
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "List of books"
+                                        },
+                                        "results": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "statusBook": {
+                                                        "type": "string",
+                                                        "example": "ready"
+                                                    },
+                                                    "title": {
+                                                        "type": "string",
+                                                        "example": "Harry Potter"
+                                                    },
+                                                    "code": {
+                                                        "type": "string",
+                                                        "exampl": "JK-45"
+                                                    },
+                                                    "author": {
+                                                        "type": "string",
+                                                        "example": "J.K Rowling"
+                                                    },
+                                                    "stock": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "createdAt": {
+                                                        "type": "string",
+                                                        "example": "2024-03-21T11:26:32.483Z"
+                                                    },
+                                                    "updatedAt": {
+                                                        "example": null
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Books not found"
+                    }
+                }
+            }
+        },
+        "/books/{id}": {
+            "get": {
+                "tags": [
+                    "books"
+                ],
+                "summary": "Select books by ID where available on system",
+                "description": "Detail buku berdasarkan ID yang ready dan siap untuk di pinjam",
+                "operationId": "booksById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id buku",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties":{
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Details book"
+                                        },
+                                        "results": {
+                                            "type": "object",
+                                            "example": {
+                                                "id": 1,
+                                                "statusBooksId": 1,
+                                                "title": "Harry Potter",
+                                                "code": "JK-45",
+                                                "author": "J.K Rowling",
+                                                "stock": 1,
+                                                "createdAt": "2024-03-21T11:26:32.483Z",
+                                                "updatedAt": null
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Book not found"
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "List all users available on system",
+                "description": "List semua user.",
+                "operationId": "listAllUsers",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties":{
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "List of users"
+                                        },
+                                        "results": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "statusUser": {
+                                                        "type": "string",
+                                                        "example": "penalty"
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "Angga"
+                                                    },
+                                                    "code": {
+                                                        "type": "string",
+                                                        "exampl": "M001"
+                                                    },
+                                                    "totalPinjam": {
+                                                        "type": "string",
+                                                        "example": "1"
+                                                    },
+                                                    "createdAt": {
+                                                        "type": "string",
+                                                        "example": "2024-03-21T11:21:00.380Z"
+                                                    },
+                                                    "updatedAt": {
+                                                        "type": "string",
+                                                        "example": "2024-04-03T22:23:31.073Z"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Books not found"
+                    }
+                }
+            }
+        },
+        "/users/{id}": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Select users by ID where available on system",
+                "description": "Detail user berdasarkan ID dengan informasi setiap buku yang di pinjam",
+                "operationId": "usersById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id users",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties":{
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Details users"
+                                        },
+                                        "results": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "statusUser": {
+                                                    "type": "string",
+                                                    "example": "penalty"
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Angga"
+                                                },
+                                                "code": {
+                                                    "type": "string",
+                                                    "example": "M001"
+                                                },
+                                                "books": {
+                                                    "type": "array",
+                                                    "example": [
+                                                        "A Study in Scarlet",
+                                                        "Harry Potter"
+                                                    ]
+                                                },
+                                                "totalPinjam": {
+                                                    "type": "string",
+                                                    "example": "2"
+                                                },
+                                                "createdAt": {
+                                                    "type": "string",
+                                                    "example": "2024-03-21T11:21:00.380Z"
+                                                },
+                                                "updatedAt": {
+                                                    "example": null
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Users not found"
+                    }
+                }
+            }
+        },
+        "/order/pesan": {
+            "post": {
+                "tags": [
+                    "orders"
+                ],
+                "summary": "Pinjam buku",
+                "description": "Pinjam buku dengan memasukkan codeUsers dan codeBooks.",
+                "operationId": "pesanBooks",
+                "requestBody": {
+                    "description": "Create a new order books",
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    "codeUsers",
+                                    "codeBooks"
+                                ],
+                                "type": "object",
+                                "properties": {
+                                    "codeUsers": {
+                                        "type": "string",
+                                        "example": "M001"
+                                    },
+                                    "codeBooks": {
+                                        "type": "string",
+                                        "example": "JK-45"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties":{
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Order created"
+                                        },
+                                        "results": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 21
+                                                    },
+                                                    "usersId": {
+                                                        "type": "integer",
+                                                        "example": 2
+                                                    },
+                                                    "booksId": {
+                                                        "type": "integer",
+                                                        "example": 2
+                                                    },
+                                                    "createdAt": {
+                                                        "type": "string",
+                                                        "example": "2024-03-21T11:21:00.380Z"
+                                                    },
+                                                    "updatedAt": {
+                                                        "example": null
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "User not found || User is penalized || Book not found || Book not ready"
+                    }
+                }
+            }
+        },
+        "/order/kembali/{userCode}": {
+            "patch": {
+                "tags": [
+                    "orders"
+                ],
+                "summary": "Kembali Buku",
+                "description": "Kembali buku dengan memasukkan codeUsers dan codeBooks.",
+                "operationId": "kembaliBooks",
+                "parameters": [
+                    {
+                        "name": "userCode",
+                        "in": "path",
+                        "description": "id users",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "booksCode",
+                        "in": "query",
+                        "description": "code books",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties":{
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Book received by admin"
+                                        },
+                                        "results": {
+                                            "type": "object",
+                                            "properties": {
+                                                "userName": {
+                                                    "type": "string",
+                                                    "example": "Ferry"
+                                                },
+                                                "userCode": {
+                                                    "type": "string",
+                                                    "example": "M002"
+                                                },
+                                                "userStatus": {
+                                                    "type": "string",
+                                                    "example": "Active"
+                                                },
+                                                "bookTitle": {
+                                                    "type": "string",
+                                                    "example": "A Study in Scarlet"
+                                                },
+                                                "booksCode": {
+                                                    "type": "string",
+                                                    "example": "SHR-1"
+                                                },
+                                                "totalHariPinjam": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        }
+    }
+}
